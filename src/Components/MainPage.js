@@ -23,10 +23,10 @@ export default class MainPage extends Component{
 
         // State variables
         this.state = {
-            domainList: ["kfels.com","somx.us","team1ad.site","hooks.cc","thinpcb.com","ziox.win"],
+            domainList: ["example.com,example1.com,example2.com"],
             emailList: [],
             emailUser: "",
-            emailDomain: "kfels.com",
+            emailDomain: "example.com",
             emailBody: [],
             emailSource: "",
             emailLoaded: false,
@@ -220,17 +220,12 @@ export default class MainPage extends Component{
     // Generate a random email account. Not readable
     onClickGenerateRandomMailbox(){
         var len = 12;
-        var a2z_upper = "ABCDEFGHJKLMNPQRSTUVWXYZ";
         var a2z_lower = "abcdefghijkmnpqstuvwxyz";
         var numeric = "23456789";
         
         var user = "";
-
-        var patt2 = new RegExp(/[A-Z]/gm);
-        var patt3 = new RegExp(/[a-z]/gm);
-        var patt4 = new RegExp(/[0-9]/gm);
         
-        var keyspace = a2z_upper + a2z_lower + numeric;
+        var keyspace = a2z_lower + numeric;
         var keyspace_len = keyspace.length;
         
         // Nothing selected
@@ -238,15 +233,8 @@ export default class MainPage extends Component{
             return null;
         }
         
-        // Always output password with 1 upper, 1 lower, 1 special and 1 number
-        for(var j=0; j<=200; j++){
-            
-            user = "";
-            for (var i = 0;  i<len; ++i) {
-                user += keyspace.charAt(Math.floor(Math.random() * keyspace_len));
-            }
-            if( patt2.test(user) && patt3.test(user) && patt4.test(user) ) break;
-            if(j===200) alert("Maxed...");
+        for (var i = 0;  i<len; ++i) {
+            user += keyspace.charAt(Math.floor(Math.random() * keyspace_len));
         }
 
         this.setState({emailUser: user});
