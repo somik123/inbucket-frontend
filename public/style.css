@@ -1,0 +1,41 @@
+.container{
+    max-width: 1400px;
+}
+
+.form-box{
+    max-width: 800px; 
+    margin: 0 auto;
+    text-align: center;
+}
+
+.userTxt{
+    width: 120px;
+}
+
+.small-text{
+    font-size: small;
+}
+
+.emailBodyText{
+    white-space: pre-wrap;
+}
+
+.list-header{
+    background-color: rgba(0, 0, 0, 0.03)
+}
+
+.mouse-pointer{
+    cursor: pointer;
+}
+
+.new-mail{
+    font-size: xx-small;
+    color: red;
+    border: 1px solid red;
+    float: right;
+    padding: 0px 3px;
+}
+
+.logo-image{
+    width: 50px;
+}
