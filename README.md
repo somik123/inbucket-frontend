@@ -6,17 +6,32 @@ Backend provided by: https://github.com/inbucket/inbucket
 
 ## How to use
 
-### Setup frontend with docker compose
+### Run frontend with docker compose
 
 Clone to your server, build and run it
 ```
 git clone https://github.com/somik123/inbucket-frontend.git
 cd inbucket-frontend
+```
+
+Provide the API domain/host/IP address
+```
+nano nano src/Services/EmailDataService.js
+```
+
+Replace `https://example.com` on line `4` with your domain 
+```
+const API_HOST = "https://mydomain.com";  // Do not end with trailing slash
+```
+
+Build and run with docker compose
+```
 docker compose build
 docker compose up -d
 ```
 
-### Setup backend with docker compose
+
+### Run backend with docker compose
 
 Use portainer with the following configuration for easy management
 
