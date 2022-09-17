@@ -3,6 +3,8 @@ inbucket fontend written in react
 
 Backend provided by: https://github.com/inbucket/inbucket
 
+<br />
+<br />
 
 ## How to use
 
@@ -13,10 +15,11 @@ Clone to your server, build and run it
 git clone https://github.com/somik123/inbucket-frontend.git
 cd inbucket-frontend
 ```
+<br />
 
 Provide the API domain/host/IP address
 ```
-nano nano src/Services/EmailDataService.js
+nano src/Services/EmailDataService.js
 ```
 
 Replace `https://example.com` on line `4` with your domain 
@@ -24,16 +27,38 @@ Replace `https://example.com` on line `4` with your domain
 const API_HOST = "https://mydomain.com";  // Do not end with trailing slash
 ```
 
+<br />
+
+Provide the list of hosts/domains that will receive the emails
+```
+nano src/Components/MainPage.js
+```
+Replace `example.com,example1.com,example2.com` in `domainList: ["example.com,example1.com,example2.com"],` on line 26 with your domains.<br />
+Replace `example.com` in `emailDomain: "example.com",` on line `29` with your default domain.
+
+<br />
+
 Build and run with docker compose
 ```
 docker compose build
 docker compose up -d
 ```
-
+<br />
+<br />
 
 ### Run backend with docker compose
 
 Use portainer with the following configuration for easy management
+
+with docker compose, run in terminal:
+```
+mkdir inbucket
+cd inbucket
+nano docker-compose.yml
+```
+<br />
+
+Then copy bellow configuration into the file and press Ctrl+x, y, followed by Enter to exit.
 
 ```
 version: "3"
@@ -80,19 +105,19 @@ services:
     volumes:
       - inbucket_emails:/home/inbucket
 ```
+<br />
 
-with docker compose:
+
+Followed by
+
 ```
-mkdir inbucket
-cd inbucket
-nano docker-compose.yml
-## copy above content into the file and press Ctrl+x, Y, Enter to exit ###
 docker compose build
 docker compose up -d
 ```
 
 
-
+<br />
+<br />
 
 
 ## Configurations for nginx reverse proxy 
