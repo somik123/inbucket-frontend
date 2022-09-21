@@ -2,6 +2,9 @@ import React, {Component} from "react";
 //import {Redirect, Route} from "react-router-dom";
 import EmailService from "../Services/EmailDataService";
 
+// Use environment vars for email domain list. Example: "example.com,example1.com,example2.com" (do not put any spaces)
+const APP_DOMAIN_LIST = process.env.REACT_APP_DOMAIN_LIST.split(',');
+
 export default class MainPage extends Component{
     constructor(props){
         super(props);
@@ -23,10 +26,10 @@ export default class MainPage extends Component{
 
         // State variables
         this.state = {
-            domainList: ["example.com,example1.com,example2.com"],
+            domainList: APP_DOMAIN_LIST,
             emailList: [],
             emailUser: "",
-            emailDomain: "example.com",
+            emailDomain: APP_DOMAIN_LIST[0],
             emailBody: [],
             emailSource: "",
             emailLoaded: false,
