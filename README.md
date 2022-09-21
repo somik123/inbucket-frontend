@@ -17,24 +17,21 @@ cd inbucket-frontend
 ```
 <br />
 
-Provide the API domain/host/IP address
+Provide the API domain/host/IP address and list of domains to be used for receive the emails in the .evn file
+
 ```
-nano src/Services/EmailDataService.js
+nano .env
 ```
 
-Replace `https://example.com` on line `4` with your domain 
+Replace `https://example.com` on line `1` with your domain <br />
+Replace `example.com,example1.com,example2.com` on line 2 with your domains, seperated by a single comma and NO SPACES.
+
 ```
-const API_HOST = "https://mydomain.com";  // Do not end with trailing slash
+REACT_APP_API_HOST=https://example.com
+REACT_APP_DOMAIN_LIST=example.com,example1.com,example2.com
 ```
 
 <br />
-
-Provide the list of hosts/domains that will receive the emails
-```
-nano src/Components/MainPage.js
-```
-Replace `example.com,example1.com,example2.com` in `domainList: ["example.com,example1.com,example2.com"],` on line 26 with your domains.<br />
-Replace `example.com` in `emailDomain: "example.com",` on line `29` with your default domain.
 
 <br />
 
