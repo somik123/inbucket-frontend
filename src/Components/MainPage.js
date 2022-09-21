@@ -447,13 +447,10 @@ export default class MainPage extends Component{
                                                 Attachments: <br />
                                             </span>
                                         ) : "" }
-                                        <span>
-                                            {emailAttachment.filename} &nbsp;
-                                            &#40; {emailAttachment["content-type"]} &#41; &nbsp;
-                                        </span>
                                         <Link to={ () => this.removeAttachmentDomain(emailAttachment["download-link"]) } target="_blank">
-                                            Download
+                                            {emailAttachment.filename}&nbsp;
                                         </Link>
+                                        &#40;{emailAttachment["content-type"]}&#41;
                                     </div>
                                 ))
                             }
