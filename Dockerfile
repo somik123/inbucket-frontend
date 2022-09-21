@@ -17,6 +17,10 @@ COPY package-lock.json ./
 
 RUN npm install
 
+# copy main app
+COPY ./public ./public/ 
+COPY ./src ./src/
+
 RUN REACT_APP_API_HOST=${REACT_APP_API_HOST} \ 
   REACT_APP_DOMAIN_LIST=${REACT_APP_DOMAIN_LIST} \ 
   npm run build
