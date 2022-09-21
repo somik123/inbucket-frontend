@@ -27,7 +27,7 @@ export default class MainPage extends Component{
         this.onClickLoadSource = this.onClickLoadSource.bind(this);
         this.copyEmailAddress = this.copyEmailAddress.bind(this);
         this.onClickOpenMailbox = this.onClickOpenMailbox.bind(this);
-        this.swapAttachmentDomain = this.swapAttachmentDomain.bind(this);
+        this.removeAttachmentDomain = this.removeAttachmentDomain.bind(this);
 
         // State variables
         this.state = {
@@ -302,11 +302,11 @@ export default class MainPage extends Component{
 
 
     // Replace domain for attachments
-    swapAttachmentDomain(attachmentUrl){
+    removeAttachmentDomain(attachmentUrl){
         attachmentUrl = attachmentUrl.replace("http://","").replace("https://","");
         var index = attachmentUrl.indexOf("/");
         var attachmentUrlPath = attachmentUrl.substring(index);
-        return API_HOST + attachmentUrlPath;
+        return attachmentUrlPath;
     }
 
 
@@ -446,7 +446,7 @@ export default class MainPage extends Component{
                                             {emailAttachment.filename} &nbsp;
                                             &#40;{emailAttachment["content-type"]}&#41; &nbsp;
                                         </span>
-                                        <Link to={ () => this.swapAttachmentDomain(emailAttachment["download-link"]) } target="_blank">
+                                        <Link to={ () => this.removeAttachmentDomain(emailAttachment["download-link"]) } target="_blank">
                                             Download
                                         </Link>
                                     </div>
