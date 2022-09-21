@@ -442,9 +442,14 @@ export default class MainPage extends Component{
                             {
                                 emailBody.attachments && emailBody.attachments.map( (emailAttachment, index) => (
                                     <div key={index}>
+                                        { index===0 ? (
+                                            <span className="font-weight-bold">
+                                                Attachments: <br />
+                                            </span>
+                                        ) : "" }
                                         <span>
                                             {emailAttachment.filename} &nbsp;
-                                            &#40;{emailAttachment["content-type"]}&#41; &nbsp;
+                                            &#40; {emailAttachment["content-type"]} &#41; &nbsp;
                                         </span>
                                         <Link to={ () => this.removeAttachmentDomain(emailAttachment["download-link"]) } target="_blank">
                                             Download
