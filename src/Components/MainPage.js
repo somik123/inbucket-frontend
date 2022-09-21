@@ -304,7 +304,7 @@ export default class MainPage extends Component{
     // Replace domain for attachments
     swapAttachmentDomain(attachmentUrl){
         attachmentUrl = attachmentUrl.replace("http://","").replace("https://","");
-        var index = attachmentUrl.index("/");
+        var index = attachmentUrl.indexOf("/");
         var attachmentUrlPath = attachmentUrl.substring(index);
         return API_HOST + attachmentUrlPath;
     }
@@ -441,7 +441,7 @@ export default class MainPage extends Component{
                         <div className="card-footer">
                             {
                                 emailBody.attachments && emailBody.attachments.map( (emailAttachment, index) => (
-                                    <div>
+                                    <div key={index}>
                                         <span>
                                             {emailAttachment.filename} &nbsp;
                                             &#40;{emailAttachment["content-type"]}&#41; &nbsp;
