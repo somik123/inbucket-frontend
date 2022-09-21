@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {Link} from 'react-router-dom';
 //import {Redirect, Route} from "react-router-dom";
 import EmailService from "../Services/EmailDataService";
 
