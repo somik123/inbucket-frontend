@@ -440,8 +440,8 @@ export default class MainPage extends Component{
                         </div>
                         <div className="card-footer">
                             {
-                                emailBody.attachments && emailList.attachments.map( (emailAttachment, index) => (
-                                    <div>
+                                emailBody.attachments && emailBody.attachments.map( (emailAttachment, index) => (
+                                    <div key={index}>
                                         <span>
                                             {emailAttachment.filename} &nbsp;
                                             &#40;{emailAttachment["content-type"]}&#41; &nbsp;
