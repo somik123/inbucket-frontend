@@ -8,7 +8,7 @@ services:
       context: ./
       dockerfile: ./Dockerfile
       args:
-        environment: dev
-        status: stable
+        - REACT_APP_API_HOST=${REACT_APP_API_HOST}
+        - REACT_APP_DOMAIN_LIST=${REACT_APP_DOMAIN_LIST}
     ports:
-      - 3000:3000
+      - 3080:80

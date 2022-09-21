@@ -1,6 +1,9 @@
-# pull the base image
+# pull the base image to build application
+FROM node:alpine as build
 
-FROM node:alpine
+# get the env variables and pass them for building
+ARG REACT_APP_API_HOST 
+ARG REACT_APP_DOMAIN_LIST
 
 # set the working direction
 WORKDIR /app
@@ -14,8 +17,16 @@ COPY package-lock.json ./
 
 RUN npm install
 
+RUN REACT_APP_API_HOST=${REACT_APP_API_HOST} \ 
+  REACT_APP_DOMAIN_LIST=${REACT_APP_DOMAIN_LIST} \ 
+  npm run build
+
+
+# Use nginx to run application
+FROM nginx:alpine
+
 # add app
-COPY . ./
+COPY --from=build /app/build /usr/share/nginx/html
 
 # start app
-CMD ["npm", "start"]
+CMD ["nginx", "-g", "daemon off;"]
