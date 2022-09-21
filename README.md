@@ -23,7 +23,7 @@ Provide the API domain/host/IP address and list of domains to be used for receiv
 nano .env
 ```
 
-Replace `https://example.com` on line `1` with your domain <br />
+Replace `https://example.com` on line `1` with your domain, DO NOT end with trailing slash. <br />
 Replace `example.com,example1.com,example2.com` on line 2 with your domains, seperated by a single comma and NO SPACES.
 
 ```
