@@ -5,6 +5,10 @@ import EmailService from "../Services/EmailDataService";
 // Use environment vars for email domain list. Example: "example.com,example1.com,example2.com" (do not put any spaces)
 const APP_DOMAIN_LIST = process.env.REACT_APP_DOMAIN_LIST.split(',');
 
+// Use environment vars for backend API URL. Example: "https://example.com" (do not end with trailing slash)
+const API_HOST = process.env.REACT_APP_API_HOST;
+
+
 export default class MainPage extends Component{
     constructor(props){
         super(props);
@@ -22,7 +26,7 @@ export default class MainPage extends Component{
         this.onClickLoadSource = this.onClickLoadSource.bind(this);
         this.copyEmailAddress = this.copyEmailAddress.bind(this);
         this.onClickOpenMailbox = this.onClickOpenMailbox.bind(this);
-        
+        this.swapAttachmentDomain = this.swapAttachmentDomain.bind(this);
 
         // State variables
         this.state = {
@@ -296,6 +300,15 @@ export default class MainPage extends Component{
     }
 
 
+    // Replace domain for attachments
+    swapAttachmentDomain(attachmentUrl){
+        attachmentUrl = attachmentUrl.replace("http://","").replace("https://","");
+        var index = attachmentUrl.index("/");
+        var attachmentUrlPath = attachmentUrl.substring(index);
+        return API_HOST + attachmentUrlPath;
+    }
+
+
 
     render(){
         
@@ -388,8 +401,8 @@ export default class MainPage extends Component{
                                             { loadHtml ? "Load Text" : "Load HTML" }
                                         </button>
                                     ) : "" }
-                                    <button className="btn btn-sm btn-outline-info mr-2" onClick={ () => this.onClickLoadSource(emailBody.id)}>Load Source</button>
-                                    <button className="btn btn-sm btn-outline-danger mr-2" onClick={ () => this.onClickDeleteEmail(emailBody.id)}>Delete</button>
+                                    <button className="btn btn-sm btn-outline-info mr-2" onClick={ () => this.onClickLoadSource(emailBody.id) }>Load Source</button>
+                                    <button className="btn btn-sm btn-outline-danger mr-2" onClick={ () => this.onClickDeleteEmail(emailBody.id) }>Delete</button>
                                 </div>
                         </div>
                         <div className="card-body">
@@ -425,13 +438,19 @@ export default class MainPage extends Component{
                             </div>
                         </div>
                         <div className="card-footer">
-                            { emailBody.body.html.length > 0 ? (
-                                <button className="btn btn-sm btn-outline-secondary mr-2" onClick={this.onClickLoadHtml}>
-                                    { loadHtml ? "Load Text" : "Load HTML" }
-                                </button>
-                            ) : "" }
-                            <button className="btn btn-sm btn-outline-info mr-2" onClick={ () => this.onClickLoadSource(emailBody.id)}>Load Source</button>
-                            <button className="btn btn-sm btn-outline-danger mr-2" onClick={ () => this.onClickDeleteEmail(emailBody.id)}>Delete</button>
+                            {
+                                emailBody.attachments && emailList.attachments.map( (emailAttachment, index) => (
+                                    <div>
+                                        <span>
+                                            {emailAttachment.filename} &nbsp;
+                                            &#40;{emailAttachment["content-type"]}&#41; &nbsp;
+                                        </span>
+                                        <Link to={ () => this.swapAttachmentDomain(emailAttachment["download-link"]) } target="_blank">
+                                            Download
+                                        </Link>
+                                    </div>
+                                ))
+                            }
                         </div>
                     </div>
                 ) : ""
