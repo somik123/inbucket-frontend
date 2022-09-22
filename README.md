@@ -123,6 +123,7 @@ docker compose up -d
 ```
 location /api{
     if ($request_method = 'OPTIONS') {
+
         add_header Access-Control-Allow-Origin * always;
         add_header Access-Control-Allow-Methods 'GET, POST, PATCH, PUT, DELETE, OPTIONS' always;
         add_header Access-Control-Allow-Headers 'Content-Type, Accept, Authorization' always;
@@ -135,6 +136,21 @@ location /api{
     }
 
     proxy_pass http://192.168.1.50:9000/api;
+
+    proxy_hide_header Access-Control-Allow-Origin;
+    proxy_hide_header Access-Control-Allow-Methods;
+    proxy_hide_header Access-Control-Allow-Headers;
+    proxy_hide_header Access-Control-Allow-Credentials;
+
+    add_header Access-Control-Allow-Origin * always;
+    add_header Access-Control-Allow-Methods 'GET, POST, PATCH, PUT, DELETE, OPTIONS' always;
+    add_header Access-Control-Allow-Headers 'Content-Type, Accept, Authorization' always;
+    add_header Access-Control-Allow-Credentials true always;
+}
+
+
+location /serve{
+    proxy_pass http://192.168.1.50:9000/serve;
 
     proxy_hide_header Access-Control-Allow-Origin;
     proxy_hide_header Access-Control-Allow-Methods;
