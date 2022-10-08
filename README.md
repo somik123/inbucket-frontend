@@ -40,6 +40,9 @@ Build and run with docker compose
 docker compose build
 docker compose up -d
 ```
+
+The frontend will be running on port 3080 so point your nginx reverse proxy to this port.
+
 <br />
 <br />
 
@@ -71,20 +74,21 @@ services:
     ports:
       # These ports are in format <host-port>:<container-port>
       - 25:2500 # Mail port
+      - 9000:9000 # API port
     environment:
       INBUCKET_LOGLEVEL: "info"
       INBUCKET_MAILBOXNAMING: "full"
       INBUCKET_SMTP_ADDR: "0.0.0.0:2500"
-      INBUCKET_SMTP_DOMAIN: "example.com"
+      INBUCKET_SMTP_DOMAIN: "hooks.cc"
       INBUCKET_SMTP_MAXRECIPIENTS: "500"
       INBUCKET_SMTP_MAXMESSAGEBYTES: "10240000"
       INBUCKET_SMTP_DEFAULTACCEPT: "false"
-      INBUCKET_SMTP_ACCEPTDOMAINS: "example.com,example1.com,example2.com"
+      INBUCKET_SMTP_ACCEPTDOMAINS: "hooks.cc,kfels.com,thinpcb.com,ziox.win,team1ad.site"
       INBUCKET_SMTP_DEFAULTSTORE: "false"
-      INBUCKET_SMTP_STOREDOMAINS: "example.comm,example1.com,example2.com"
+      INBUCKET_SMTP_STOREDOMAINS: "hooks.cc,kfels.com,thinpcb.com,ziox.win,team1ad.site"
       INBUCKET_SMTP_TIMEOUT: "20s"
       INBUCKET_POP3_ADDR: "0.0.0.0:1100"
-      INBUCKET_POP3_DOMAIN: "example.com"
+      INBUCKET_POP3_DOMAIN: "hooks.cc"
       INBUCKET_POP3_TIMEOUT: "20s"
       INBUCKET_WEB_ADDR: "0.0.0.0:9000"
       INBUCKET_WEB_UIDIR: "ui"
