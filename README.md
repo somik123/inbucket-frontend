@@ -68,7 +68,8 @@ volumes:
     name: inbucket_emails
 
 services:
-  backend:
+  app:
+    container_name: inbucket-backend
     image: inbucket/inbucket:latest
     restart: unless-stopped
     ports:
@@ -79,16 +80,16 @@ services:
       INBUCKET_LOGLEVEL: "info"
       INBUCKET_MAILBOXNAMING: "full"
       INBUCKET_SMTP_ADDR: "0.0.0.0:2500"
-      INBUCKET_SMTP_DOMAIN: "hooks.cc"
+      INBUCKET_SMTP_DOMAIN: "example.com"
       INBUCKET_SMTP_MAXRECIPIENTS: "500"
       INBUCKET_SMTP_MAXMESSAGEBYTES: "10240000"
       INBUCKET_SMTP_DEFAULTACCEPT: "false"
-      INBUCKET_SMTP_ACCEPTDOMAINS: "hooks.cc,kfels.com,thinpcb.com,ziox.win,team1ad.site"
+      INBUCKET_SMTP_ACCEPTDOMAINS: "example.com,example1.com,example2.com"
       INBUCKET_SMTP_DEFAULTSTORE: "false"
-      INBUCKET_SMTP_STOREDOMAINS: "hooks.cc,kfels.com,thinpcb.com,ziox.win,team1ad.site"
+      INBUCKET_SMTP_STOREDOMAINS: "example.com,example1.com,example2.com"
       INBUCKET_SMTP_TIMEOUT: "20s"
       INBUCKET_POP3_ADDR: "0.0.0.0:1100"
-      INBUCKET_POP3_DOMAIN: "hooks.cc"
+      INBUCKET_POP3_DOMAIN: "example.com"
       INBUCKET_POP3_TIMEOUT: "20s"
       INBUCKET_WEB_ADDR: "0.0.0.0:9000"
       INBUCKET_WEB_UIDIR: "ui"
@@ -105,6 +106,7 @@ services:
       INBUCKET_STORAGE_MAILBOXMSGCAP: "50" 
     volumes:
       - inbucket_emails:/home/inbucket
+
 ```
 <br />
 
