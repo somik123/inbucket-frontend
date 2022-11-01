@@ -89,13 +89,13 @@ services:
       INBUCKET_SMTP_STOREDOMAINS: "example.com,example1.com,example2.com"
       INBUCKET_SMTP_TIMEOUT: "20s"
       INBUCKET_POP3_ADDR: "0.0.0.0:1100"
-      INBUCKET_POP3_DOMAIN: "example.com"
+      INBUCKET_POP3_DOMAIN: "hooks.cc"
       INBUCKET_POP3_TIMEOUT: "20s"
       INBUCKET_WEB_ADDR: "0.0.0.0:9000"
       INBUCKET_WEB_UIDIR: "ui"
       INBUCKET_WEB_GREETINGFILE: "defaults/greeting.html"
       INBUCKET_WEB_TEMPLATECACHE: "true"
-      INBUCKET_WEB_MAILBOXPROMPT: "@kfels.com"
+      INBUCKET_WEB_MAILBOXPROMPT: "@example.com"
       INBUCKET_WEB_COOKIEAUTHKEY: ""
       INBUCKET_WEB_MONITORVISIBLE: "false"
       INBUCKET_WEB_MONITORHISTORY: "20"
@@ -106,7 +106,6 @@ services:
       INBUCKET_STORAGE_MAILBOXMSGCAP: "50" 
     volumes:
       - inbucket_emails:/home/inbucket
-
 ```
 <br />
 
