@@ -28,12 +28,14 @@ export default class MainPage extends Component{
         this.copyEmailAddress = this.copyEmailAddress.bind(this);
         this.onClickOpenMailbox = this.onClickOpenMailbox.bind(this);
         this.removeAttachmentDomain = this.removeAttachmentDomain.bind(this);
+        this.onChangeGender = this.onChangeGender.bind(this);
 
         // State variables
         this.state = {
             domainList: APP_DOMAIN_LIST,
             emailList: [],
             emailUser: "",
+            emailGender: "Male",
             emailDomain: APP_DOMAIN_LIST[0],
             emailBody: [],
             emailSource: "",
@@ -72,27 +74,32 @@ export default class MainPage extends Component{
         }
         else{
             // Call API through EmailService
-            EmailService.getNameList()
-            .then(response =>{
-                var nameArray = response.data.split("\n");
-                var rand = Math.floor(Math.random() * nameArray.length);
-                var randNum = Math.floor(Math.random() * 99);
+            if(this.state.emailGender === "Other"){
+                this.onClickGenerateRandomMailbox();
+            }
+            else if(this.state.emailGender === "Male" || this.state.emailGender === "Female" || this.state.emailGender === "Username"){
+                EmailService.getNameList(this.state.emailGender)
+                .then(response =>{
+                    var nameArray = response.data.split("\n");
+                    var rand = Math.floor(Math.random() * nameArray.length);
+                    var randNum = Math.floor(Math.random() * 99);
 
-                user = nameArray[rand].toLowerCase() + randNum;
-                this.setState({emailUser: user});
-                console.log(user);
+                    user = nameArray[rand].toLowerCase() + randNum;
+                    this.setState({emailUser: user});
+                    console.log(user);
 
-                domain = this.loadRandomDomain();
+                    domain = this.loadRandomDomain();
 
-                // Save to cookie
-                this.setCookie("user", user, 30);
-                this.setCookie("domain", domain, 30);
+                    // Save to cookie
+                    this.setCookie("user", user, 30);
+                    this.setCookie("domain", domain, 30);
 
-                // Load emails with new details
-                emailAcc = user + "@" + domain;
-                this.retrieveEmailList(emailAcc);
-            })
-            .catch(e => {console.log(e)});
+                    // Load emails with new details
+                    emailAcc = user + "@" + domain;
+                    this.retrieveEmailList(emailAcc);
+                })
+                .catch(e => {console.log(e)});
+            }
         }
     }
 
@@ -225,6 +232,11 @@ export default class MainPage extends Component{
         console.log(e.target.value);
     }
 
+    onChangeGender(e){
+        this.setState({emailGender: e.target.value});
+        console.log(e.target.value);
+    }
+
     // Generate a random email account. Not readable
     onClickGenerateRandomMailbox(){
         var len = 12;
@@ -340,10 +352,15 @@ export default class MainPage extends Component{
     <div className="row mb-3 mt-1 form-box">
         <div className="col-md-2 pl-1 pr-1 mb-2"></div>
         <div className="col-md-4 pl-1 pr-1 mb-2">
-            <button className="form-control btn btn-sm btn-outline-secondary" onClick={this.onClickGenerateReadableMailbox}>Generate Readable Mailbox</button>
+            Gender: <select className="form-control btn btn-sm btn-outline-secondary" id="gender" onChange={this.onChangeGender}>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+                <option>Username</option>
+            </select>
         </div>
         <div className="col-md-4 pl-1 pr-1 mb-2">
-            <button className="form-control btn btn-sm btn-outline-secondary" onClick={this.onClickGenerateRandomMailbox}>Generate Random Mailbox</button>
+            <button className="form-control btn btn-sm btn-outline-secondary" onClick={this.onClickGenerateReadableMailbox}>Generate Mailbox</button>
         </div>
         <div className="col-md-2 pl-1 pr-1 mb-2"></div>
     </div>

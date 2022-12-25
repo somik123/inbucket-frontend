@@ -24,8 +24,16 @@ class EmailDataService{
     async markEmailAsRead(email,id, data){
         return await axios.patch(API_BASE_URL + email + "/" + id, data);
     }
-    async getNameList(){
-        return await axios.get("https://raw.githubusercontent.com/somik123/random-names/main/names.txt");
+    async getNameList(gender){
+        if(gender=="Male"){
+            return await axios.get("https://raw.githubusercontent.com/somik123/random-names/main/male_names.txt");
+        }
+        else if(gender=="Female"){
+            return await axios.get("https://raw.githubusercontent.com/somik123/random-names/main/female_names.txt");
+        }
+        else if(gender=="Username"){
+            return await axios.get("https://raw.githubusercontent.com/somik123/random-names/main/usernames.txt");
+        }
     }
 }
 
