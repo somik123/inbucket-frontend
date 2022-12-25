@@ -352,7 +352,7 @@ export default class MainPage extends Component{
     <div className="row mb-3 mt-1 form-box">
         <div className="col-md-2 pl-1 pr-1 mb-2"></div>
         <div className="col-md-4 pl-1 pr-1 mb-2">
-            Gender: <select className="form-control btn btn-sm btn-outline-secondary" id="gender" onChange={this.onChangeGender}>
+            <select className="form-control btn btn-sm btn-outline-secondary" id="gender" onChange={this.onChangeGender}>
                 <option>Male</option>
                 <option>Female</option>
                 <option>Other</option>
