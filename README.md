@@ -1,7 +1,11 @@
 # inbucket-frontend
 inbucket fontend written in react
 
-Backend provided by: https://github.com/inbucket/inbucket
+<img src="https://raw.githubusercontent.com/somik123/inbucket-frontend/main/screenshot.png" />
+
+<br />
+
+Backend provided by: https://github.com/somik123/inbucket-backend
 
 <br />
 <br />
