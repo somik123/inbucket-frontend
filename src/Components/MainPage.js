@@ -461,11 +461,11 @@ export default class MainPage extends Component {
                                         <span id="emailTime">{emailBody.date.replace("T", " ").substring(0, emailBody.date.indexOf('.'))}</span>
 
                                         <div className="button-box mt-2">
-                                            {emailBody.body.html.length > 0 ? (
-                                                <button className="btn btn-sm btn-outline-secondary mr-2" onClick={this.onClickLoadHtml}>
-                                                    {loadHtml ? "Load Text" : "Load HTML"}
-                                                </button>
-                                            ) : ""}
+                                            { /* emailBody.body.html.length > 0 ? ( */}
+                                            <button className="btn btn-sm btn-outline-secondary mr-2" onClick={this.onClickLoadHtml}>
+                                                {loadHtml ? "Load Text" : "Load HTML"}
+                                            </button>
+                                            { /*) : "" */}
                                             <button className="btn btn-sm btn-outline-info mr-2" onClick={() => this.onClickLoadSource(emailBody.id)}>Load Source</button>
                                             <button className="btn btn-sm btn-outline-danger mr-2" onClick={() => this.onClickDeleteEmail(emailBody.id)}>Delete</button>
                                         </div>
