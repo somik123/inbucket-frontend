@@ -16,7 +16,7 @@ class App extends Component {
                             <li className="nav-item">
                                 <Link to={"/"} className="nav-link">
                                     <img src='/android-chrome-192x192.png' alt='logo' className='logo-image' />
-                                    <span className='ml-2 mr-2 font-weight-bold'>Hooks Temp Email Service</span>
+                                    <span className='ml-2 mr-2 font-weight-bold'>Temp Email Service</span>
                                 </Link>
                             </li>
                         </div>
