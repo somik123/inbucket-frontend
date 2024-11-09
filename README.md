@@ -74,7 +74,7 @@ volumes:
 services:
   app:
     container_name: inbucket-backend
-    image: inbucket/inbucket:latest
+    image: somik123/inbucket:main
     restart: unless-stopped
     ports:
       # These ports are in format <host-port>:<container-port>
