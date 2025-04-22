@@ -148,9 +148,11 @@ export default class MainPage extends Component {
             this.setCookie("user", this.state.emailUser, 30);
             this.setCookie("domain", this.state.emailDomain, 30);
 
+            // Update query
+            this.setQueryString(this.state.emailUser, this.state.emailDomain);
+
             this.retrieveEmailList(emailAcc);
         }
-
     }
 
 
